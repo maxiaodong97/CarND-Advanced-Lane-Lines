@@ -146,9 +146,10 @@ I applied the pipeline to test images, and here is the result.
 
 #### 1. Provide a link to your final video output.  
 
-Here's a project_video.mp4 output ![alt_text][video1]
+Here's a  [project_video_out.mp4](./project_video_out.mp4)
 
-Here's a challenge_video.mp4 output ![alt_text][video2]
+Here's a  [challenge_video_out.mp4](./challenge_video_out.mp4)
+
 
 ---
 
@@ -160,11 +161,11 @@ It works ok in project_video.mp4, but perform poorly in the challenge_video.mp4.
 
 ![alt text][image14]
 
-Rerun for the challenge_video.
+Rerun for the challenge_video with gray channel.
 
-Here's a challenge_video.mp4 output using gray channel ![alt_text][video3]
+Here's a  [challenge_video_out_gray.mp4](./challenge_video_out_gray.mp4)
 
-It looks better than S channel.
+Not perfect but it looks better than S channel.
 
 Another optimization may potentially work is that we know the lane width should within some predefined threshhold, we can use this information to eliminate the wrong one and re-calculate with a different algorithm or different color space. It is sort of adaptive optimization.
 
