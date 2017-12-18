@@ -146,9 +146,9 @@ I applied the pipeline to test images, and here is the result.
 
 #### 1. Provide a link to your final video output.  
 
-Here's a  [project_video_output.mp4](./project_video_output.mp4)
+Here's a  [project_video_out.mp4](./project_video_out.mp4)
 
-Here's a  [challenge_video_output.mp4](./challenge_video_output.mp4)
+Here's a  [challenge_video_out.mp4](./challenge_video_out.mp4)
 
 
 ---
@@ -163,7 +163,7 @@ It works ok in project_video.mp4, but perform poorly in the challenge_video.mp4.
 
 Rerun for the challenge_video with gray channel.
 
-Here's a  [challenge_video_output_gray.mp4](./challenge_video_output_gray.mp4)
+Here's a  [challenge_video_out_gray.mp4](./challenge_video_out_gray.mp4)
 
 Not perfect but it looks better than S channel.
 
