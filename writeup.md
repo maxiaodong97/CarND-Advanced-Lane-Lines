@@ -30,7 +30,10 @@ The goals / steps of this project are the following:
 [image11]: ./output_images/perspective_transformed_combind_grad_test_images.png "Perspective Transformation for All Test Images Combined Grads"
 [image12]: ./output_images/detect_lane_area_test_images.png "Detected Lane Areas for All Test Images Side by Side"
 [image13]: ./output_images/final_output_test_images.png "Final output of Processed Test Images"
+[image14]: ./output_images/challenge_image.png "Modified Challenge Image Pipeline"
 [video1]: ./project_video_output.mp4 "Video Output"
+[video2]: ./challenge_video_output.mp4 "Video Output Based on S Channel"
+[video3]: ./challenge_video_output_gray.mp4 "Video Output Based on Gray Channel"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -143,7 +146,9 @@ I applied the pipeline to test images, and here is the result.
 
 #### 1. Provide a link to your final video output.  
 
-Here's a [link to my video result](./project_video_output.mp4)
+Here's a project_video.mp4 output ![alt_text][video1]
+
+Here's a challenge_video.mp4 output ![alt_text][video2]
 
 ---
 
@@ -151,6 +156,16 @@ Here's a [link to my video result](./project_video_output.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-It works ok in project_video.mp4, but perform poorly in the challenge_video.mp4. 
+It works ok in project_video.mp4, but perform poorly in the challenge_video.mp4.  I saved a frame under "./challenge_images/" and did more analysis, looks previously using S channel alone is not always right. In this case, L channel or gray can detect image more accurately. Refer 
+
+![alt text][image14]
+
+Rerun for the challenge_video.
+
+Here's a challenge_video.mp4 output using gray channel ![alt_text][video3]
+
+It looks better than S channel.
+
+Another optimization may potentially work is that we know the lane width should within some predefined threshhold, we can use this information to eliminate the wrong one and re-calculate with a different algorithm or different color space. It is sort of adaptive optimization.
 
 
