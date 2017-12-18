@@ -157,7 +157,7 @@ Here's a  [challenge_video_out.mp4](./challenge_video_out.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-It works ok in project_video.mp4, but perform poorly in the challenge_video.mp4.  I saved a frame under "./challenge_images/" and did more analysis, looks previously using S channel alone is not always right. In this case, L channel or gray can detect image more accurately. Refer 
+It works pretty good in project_video.mp4, but perform poorly in the challenge_video.mp4. Looks like it is often confused by road cracks. I saved a frame under "./challenge_images/" and did more analysis, find out using S channel alone is not always right. In this case, L channel or gray can detect image more accurately. Refer 
 
 ![alt text][image14]
 
@@ -165,7 +165,7 @@ Rerun for the challenge_video with gray channel.
 
 Here's a  [challenge_video_out_gray.mp4](./challenge_video_out_gray.mp4)
 
-Not perfect but it looks better than S channel.
+Not perfect but it looks better than using S channel alone.
 
 Another optimization may potentially work is that we know the lane width should within some predefined threshhold, we can use this information to eliminate the wrong one and re-calculate with a different algorithm or different color space. It is sort of adaptive optimization.
 
