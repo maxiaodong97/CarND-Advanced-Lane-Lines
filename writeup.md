@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./output_images/find_corner.png "Find Corners"
 [image2]: ./output_images/undistort_chessboard.png "Undistort Chessboard Example"
-[image3]: ./output_images/undistort.png "Undistort Test Images"
+[image3]: ./output_images/undistorted.png "Undistort Test Images"
 [image4]: ./output_images/hls.png "Test Images in HLS color space"
 [image5]: ./output_images/hsv.png "Test Images in HSV color space"
 [image6]: ./output_images/lab.png "Test Images in LAB color space"
