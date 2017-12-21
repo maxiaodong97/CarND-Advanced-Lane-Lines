@@ -19,21 +19,20 @@ The goals / steps of this project are the following:
 
 [image1]: ./output_images/find_corner.png "Find Corners"
 [image2]: ./output_images/undistort_chessboard.png "Undistort Chessboard Example"
-[image3]: ./output_images/undistort_test_images.png "Undistort Test Images"
-[image4]: ./output_images/test_image_hls_space.png "Test Images in HLS color space"
-[image5]: ./output_images/sobel_abs_test_images.png "Sobel Thresh Grads in X Direction"
-[image6]: ./output_images/sobel_mag_test_images.png "Sobel Thresh Grads in Magnititude"
-[image7]: ./output_images/sobel_direction_test_images.png "Sobel Thresh Grads in Direction"
-[image8]: ./output_images/sobel_combined_test_images.png "Sobel Thresh Grads Combined"
-[image9]: ./output_images/Perpective_transform_marked.png "Perspective Transformation With Marked Points"
-[image10]: ./output_images/perpective_transformed_test_images.png "Perspective Transformation for All Test Images"
-[image11]: ./output_images/perspective_transformed_combind_grad_test_images.png "Perspective Transformation for All Test Images Combined Grads"
-[image12]: ./output_images/detect_lane_area_test_images.png "Detected Lane Areas for All Test Images Side by Side"
-[image13]: ./output_images/final_output_test_images.png "Final output of Processed Test Images"
-[image14]: ./output_images/challenge_image.png "Modified Challenge Image Pipeline"
+[image3]: ./output_images/undistort.png "Undistort Test Images"
+[image4]: ./output_images/hls.png "Test Images in HLS color space"
+[image5]: ./output_images/hsv.png "Test Images in HSV color space"
+[image6]: ./output_images/lab.png "Test Images in LAB color space"
+[image7]: ./output_images/color_thresh.png "Color Threshed Test Images"
+[image8]: ./output_images/sobel_abs_x_y.png "Sobel Thresh Grads in abs X and Y"
+[image9]: ./output_images/sobel_mag_direction.png "Sobel Thresh Magnititude and Direction"
+[image10]: ./output_images/color_grads_thresh.png "Color and Sobel Thresh Test Images"
+[image11]: ./output_images/perpective_transform_thresh.png "Perspective Transformation for threshed images"
+[image12]: ./output_images/perpective_transformed_test_images.png "Perspective Transformation for All Test Images"
+[image13]: ./output_images/draw_line.png "Detected Lane Areas for All Test Images Side by Side"
+[image14]: ./output_images/pipeline_test.png "Final output of Processed Test Images"
 [video1]: ./project_video_output.mp4 "Video Output"
-[video2]: ./challenge_video_output.mp4 "Video Output Based on S Channel"
-[video3]: ./challenge_video_output_gray.mp4 "Video Output Based on Gray Channel"
+[video2]: ./challenge_video_output.mp4 "Challenge Video Output"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -65,20 +64,31 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 
 I used a combination of color and gradient thresholds to generate a binary image. Please refer "./project.ipynb" code block 2~8. 
 
-First I convert the image to HLS color space. I see S Channel always contains lane line information regardless light.
+First I convert the image to HLS, HSV, and LAB color space. 
 ![alt text][image4]
-
-Second, I use sobel threshholded gradients absolute value on X orientation on S Channel: 
 ![alt text][image5]
-
-Third, I use sobel threshholded gradients magnititude on S Channel: 
 ![alt text][image6]
 
-Then, I use sobel threshholded gradients direction on S Channel: 
+Then I found L, V, and B channel are good to detect line, so I combined 3 channel with threshhold to detect lane. 
+```python
+    thresh_L[((L > 195) & (L <= 255))] = 1
+    thresh_V[((V > 215) & (V <= 255))] = 1
+    thresh_B[((B > 150) & (B <= 255))] = 1
+    output[(thresh_L==1) | (thresh_V==1) | (thresh_B==1)] = 1
+```
 ![alt text][image7]
 
-Finally, I combined all above altogether: 
+Using color alone doesn't work well with challenge_video, so I also use sobel grads to as additional filter. 
+First sobel abs X and Y is used together, then use Mag and Direction. As mentioned from lecture
+```python
+    combined[((gradX == 1) & (gradY==1)) | ((mag==1) & (direction==1))] = 1
+```
 ![alt text][image8]
+![alt text][image9]
+
+Finally, I combined color and thresh together as
+![alt text][image10]
+
 
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
@@ -109,19 +119,16 @@ This resulted in the following source and destination points:
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image9]
+![alt text][image11]
 
 Then I applied transform to all test images: 
-![alt text][image10]
-
-And also applied transform to all test images combined grads images 
-![alt text][image11]
+![alt text][image12]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 The line detection code could be found at code block 12 in  "./project.ipynb". The algorithm calculates the histogram on the X axis. The maximum two peak values suggest the left lane and right lane, the algorithms then collect the non-zero points contained on those windows and do a polynomial fit to find the line model.  The following picture shows the procedure:
 
-![alt text][image12]
+![alt text][image13]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -138,7 +145,7 @@ To find the position to the center, first caculate the middle point of left lane
 
 I applied the pipeline to test images, and here is the result. 
 
-![alt text][image13]
+![alt text][image14]
 
 ---
 
@@ -146,9 +153,9 @@ I applied the pipeline to test images, and here is the result.
 
 #### 1. Provide a link to your final video output.  
 
-Here's a  [project_video_out.mp4](./project_video_out.mp4)
+Here's a  [project_video_output.mp4](./project_video_output.mp4)
 
-Here's a  [challenge_video_out.mp4](./challenge_video_out.mp4)
+Here's a  [challenge_video_output.mp4](./challenge_video_output.mp4)
 
 
 ---
@@ -157,16 +164,5 @@ Here's a  [challenge_video_out.mp4](./challenge_video_out.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-It works pretty good in project_video.mp4, but perform poorly in the challenge_video.mp4. Looks like it is often confused by road cracks. I saved a frame under "./challenge_images/" and did more analysis, find out using S channel alone is not always right. In this case, L channel or gray can detect image more accurately. Refer 
-
-![alt text][image14]
-
-Rerun for the challenge_video with gray channel.
-
-Here's a  [challenge_video_out_gray.mp4](./challenge_video_out_gray.mp4)
-
-Not perfect but it looks better than using S channel alone.
-
-Another optimization may potentially work is that we know the lane width should within some predefined threshhold, we can use this information to eliminate the wrong one and re-calculate with a different algorithm or different color space. It is sort of adaptive optimization.
-
+I found color space thresh can recognize lane pretty well when the light doesn't change much. Otherwise, sobel grads needs to be used.  Color thresh and sobel thresh are very critical to the overall detection. I also find the fit from previous frame really helps to make the detection more stable. The pipeline may fail when the light changes frequently and the lane is not clearly marked as found in harder_challenge_video. To make it more robust, CNN can be used to do the job. 
 
