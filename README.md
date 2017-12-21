@@ -9,9 +9,7 @@ Here is the list of file for submission:
 
 1. [writeup.md](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/writeup.md)
 2. [project.ipynb](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/project.ipynb)
-3. [project.html](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/project.html)
-4. [output_images](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/tree/master/output_images)
-5. [project_video_out.mp4](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/project_video_out.mp4)
-6. [challenge_video_out.mp4](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/challenge_video_out.mp4)
-7. [challenge_video_out_gray.mp4](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/challenge_video_out_gray.mp4)
+3. [output_images](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/tree/master/output_images)
+4. [project_video_output.mp4](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/project_video_output.mp4)
+5. [challenge_video_output.mp4](https://github.com/maxiaodong97/CarND-Advanced-Lane-Lines/blob/master/challenge_video_output.mp4)
 
